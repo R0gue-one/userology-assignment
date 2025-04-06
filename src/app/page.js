@@ -1,31 +1,16 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
-import { getWeather } from '@/app/lib/getWeather';
 import WeatherDashboard from './components/weatherDashboards.js';
 import CryptoDashboard from './components/cryptoDashboard';
 import NewsDashboard from './components/newsDashboard';
 import { ChevronDown } from 'lucide-react';
 
 export default function Dashboard() {
-  const cities = ['New York', 'London', 'Tokyo'];
-  const [weatherData, setWeatherData] = useState({});
+  
   const [showScrollHint, setShowScrollHint] = useState(true);
   const newsRef = useRef(null);
 
-  useEffect(() => {
-    async function fetchAll() {
-      const data = {};
-      for (const city of cities) {
-        try {
-          data[city] = await getWeather(city);
-        } catch {
-          data[city] = { temp: '--', condition: 'Error' };
-        }
-      }
-      setWeatherData(data);
-    }
-    fetchAll();
-  }, []);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +41,7 @@ export default function Dashboard() {
         <br/><br/>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 max-w-6xl mx-auto">
           <div className="bg-gray-800 rounded-xl shadow-xl shadow-blue-900/20 p-6 hover:shadow-blue-800/30 transition-all duration-300">
-            <WeatherDashboard cities={cities} weatherData={weatherData} />
+            <WeatherDashboard  />
           </div>
           <div className="bg-gray-800 rounded-xl shadow-xl shadow-amber-900/20 p-6 hover:shadow-amber-800/30 transition-all duration-300">
             <CryptoDashboard />

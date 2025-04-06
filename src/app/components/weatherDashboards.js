@@ -7,9 +7,10 @@ import {
   CloudRain, CloudLightning, CloudFog
 } from 'lucide-react';
 
-export default function WeatherDashboard({ cities }) {
+export default function WeatherDashboard() {
   const [weatherData, setWeatherData] = useState({});
   const [lastUpdated, setLastUpdated] = useState(null);
+  const cities = ['New York', 'London', 'Tokyo'];
 
 
 
