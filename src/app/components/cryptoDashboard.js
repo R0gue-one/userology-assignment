@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, Coins, DollarSign, BarChart3 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 
 const coins = {
   Bitcoin: { binance: 'btcusdt', coingecko: 'bitcoin', icon: '₿', color: 'text-amber-500' },
@@ -39,41 +41,62 @@ export default function CryptoDashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const streams = Object.values(coins)
-      .map((c) => `${c.binance}@ticker`)
-      .join('/');
+  const wsRef = useRef(null);
 
+    useEffect(() => {
+    const streams = Object.values(coins)
+        .map((c) => `${c.binance}@ticker`)
+        .join('/');
     const ws = new WebSocket(`wss://stream.binance.com:9443/stream?streams=${streams}`);
+    wsRef.current = ws;
 
     ws.onmessage = (event) => {
-      const msg = JSON.parse(event.data);
-      const data = msg.data;
+        const msg = JSON.parse(event.data);
+        const data = msg.data;
 
-      const coinName = Object.keys(coins).find(
+        const coinName = Object.keys(coins).find(
         (name) => coins[name].binance === data.s.toLowerCase()
-      );
+        );
 
-      if (!coinName) return;
+        if (!coinName) return;
 
-      setCryptoData((prev) => ({
+        setCryptoData((prev) => ({
         ...prev,
         [coinName]: {
-          ...prev[coinName],
-          price: `$${parseFloat(data.c).toFixed(2)}`,
-          change: parseFloat(data.P).toFixed(2),
+            ...prev[coinName],
+            price: `$${parseFloat(data.c).toFixed(2)}`,
+            change: parseFloat(data.P).toFixed(2),
         },
-      }));
+        }));
     };
 
-    return () => ws.close();
-  }, []);
+    return () => {
+        if (wsRef.current) {
+          wsRef.current.close();
+          wsRef.current = null;
+        }
+      };
+    }, []);
+
+
+    const router = useRouter();
+    const handleDashboardClick = () => {
+    router.push(`/crypto/bitcoin`);
+    };
+    const handleCityClick = (coin) => {
+    router.push(`/crypto/${coin}`);
+    };
 
   return (
     <section id="crypto" className="space-y-6">
-      <div className="flex items-center gap-2 border-b border-gray-700 pb-4">
-        <Coins className="text-yellow-500" size={24} />
-        <h2 className="text-2xl font-semibold">Crypto Dashboard</h2>
+       <div
+        onClick={handleDashboardClick}
+        className="flex justify-between items-center border-b border-gray-700 pb-4 cursor-pointer hover:opacity-80 transition"
+        >
+        <div className="flex items-center gap-2">
+            <Coins className="text-yellow-500" size={24} />
+            <h2 className="text-2xl font-semibold">Crypto Dashboard</h2>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -85,6 +108,7 @@ export default function CryptoDashboard() {
           return (
             <div
               key={coin}
+              onClick={() => handleCityClick(coin.toLowerCase())}
               className="bg-gray-800/50 p-6 rounded-2xl backdrop-blur-sm border border-gray-700/50 hover:border-yellow-500/30 transition-all duration-300"
             >
               <div className="flex justify-between items-center mb-4">

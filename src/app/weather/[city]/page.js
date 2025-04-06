@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation'
-import { Search } from 'lucide-react'
+import { Search, House } from 'lucide-react'
 
 import axios from 'axios';
 
@@ -35,6 +35,10 @@ export default function CityWeatherPage() {
     e.preventDefault()
     const route = `/weather/${query.toLowerCase().replace(/\s+/g, '-')}`
     router.push(route)
+  }
+
+  const onHomeClick = () =>{
+    router.push(`/`);
   }
 
   useEffect(() => {
@@ -113,19 +117,24 @@ export default function CityWeatherPage() {
   });
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 p-4">
-      <form onSubmit={handleSubmit} className="flex items-center border rounded-full px-4 py-2 shadow-md w-full max-w-md bg-white">
-        <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search city"
-            className="flex-grow outline-none text-sm px-2 text-black"
-        />
-        <button type="submit" className="ml-2 bg-stone-700 text-white p-2 rounded-full hover:bg-blue-900 transition">
-            <Search className="w-4 h-4" />
-        </button>
-        </form>
+    <div className="p-4 md:p-6 space-y-6 text-white bg-gradient-to-br from-gray-950 to-gray-900 min-h-screen">
+        <div className="flex justify-center">
+            <button onClick={onHomeClick} className="w-12 h-12 p-2 mx-2 my-2 bg-stone-100 text-stone-900 rounded-full hover:bg-stone-300 transition flex items-center justify-center">
+                <House className="w-4 h-4" />
+            </button>
+            <form onSubmit={handleSubmit} className="flex items-center border rounded-full px-4 py-2 shadow-md w-full max-w-md bg-white">
+                <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search city"
+                    className="flex-grow outline-none text-sm px-2 text-black"
+                />
+                <button type="submit" className="ml-2 bg-stone-700 text-white p-2 rounded-full hover:bg-blue-900 transition">
+                    <Search className="w-4 h-4" />
+                </button>
+                </form>
+        </div>
 
     <div className="container mx-auto px-4 py-8 max-w-6xl ">
       {/* Header Section - Simplified */}

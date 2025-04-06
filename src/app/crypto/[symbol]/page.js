@@ -2,19 +2,22 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import {useRouter} from 'next/navigation';
 import 'chart.js/auto';
-import { ChevronDown, ChevronUp, Search, TrendingUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Search, TrendingUp, House } from 'lucide-react';
 
 export default function CryptoDetails() {
   const { symbol } = useParams();
   const [details, setDetails] = useState(null);
   const [history, setHistory] = useState([]);
+  const router = useRouter();
   const [volume, setVolume] = useState([]);
   const [livePrice, setLivePrice] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [previousPrice, setPreviousPrice] = useState(null);
   const [showFullTable, setShowFullTable] = useState(false);
   const [query, setQuery] = useState('');
-
+  Router
   const binanceSymbols = {
     bitcoin: 'btcusdt',
     ethereum: 'ethusdt',
@@ -29,9 +32,15 @@ export default function CryptoDetails() {
   useEffect(() => {
     async function fetchData() {
       try {
+
+        setLoading(true);
+
         const res = await fetch(`https://api.coingecko.com/api/v3/coins/${symbol}`);
         const data = await res.json();
+        console.log(data);
         setDetails(data);
+
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching coin details:", error);
       }
@@ -140,9 +149,27 @@ export default function CryptoDetails() {
   // Show only the last 7 days in the table initially
   const displayHistory = showFullTable ? history : history.slice(-7);
 
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  
+
+  const onHomeClick = () =>{
+    router.push(`/`);
+  }
+
   return (
     <div className="p-4 md:p-6 space-y-6 text-white bg-gradient-to-br from-gray-950 to-gray-900 min-h-screen">
     <div className="flex justify-center">
+        <button onClick={onHomeClick} className="w-12 h-12 p-2 mx-2 my-2 bg-stone-100 text-stone-900 rounded-full hover:bg-stone-300 transition flex items-center justify-center">
+            <House className="w-4 h-4" />
+        </button>
         <form onSubmit={handleSearch} className="flex items-center border rounded-full px-4 py-2 shadow-md w-full max-w-md bg-white">
         <input
             type="text"
