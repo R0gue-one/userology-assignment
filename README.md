@@ -25,6 +25,13 @@ Developed using modern web technologies, likely including React.js and Next.js, 
 #### Crypto Details
 ![image](https://github.com/user-attachments/assets/1c981472-e9e7-4789-b35c-0d5af02624cd)
 
-## Demo
 
 
+## APIs
+Weather API: [Weatherapi](https://www.weatherapi.com/)
+
+Crypto API:
+- websocket: [Binance](https://www.binance.com/en-IN/binance-api)
+- other: [Coin Gecko](https://www.coingecko.com/en/api)
+
+News API: [Newsdata.io](https://newsdata.io/)
