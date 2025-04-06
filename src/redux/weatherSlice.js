@@ -6,7 +6,7 @@ const loadStateFromLocalStorage = () => {
     const serializedState = localStorage.getItem('weatherState');
     if (serializedState === null) {
       return {
-        cities: ['New York', 'London', 'Tokyo'],
+        cities: ['Mumbai','New York', 'London'],
         favoriteCities: [],
       };
     }
@@ -14,7 +14,7 @@ const loadStateFromLocalStorage = () => {
   } catch (err) {
     console.error('Could not load state from localStorage:', err);
     return {
-      cities: ['New York', 'London', 'Tokyo'],
+      cities: ['Mumbai', 'New York', 'London'],
       favoriteCities: [],
     };
   }

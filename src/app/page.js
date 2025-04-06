@@ -1,11 +1,18 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
-import WeatherDashboard from './components/weatherDashboards.js';
-import CryptoDashboard from './components/cryptoDashboard';
+import dynamic from 'next/dynamic';
+// import CryptoDashboard from './components/cryptoDashboard';
 import NewsDashboard from './components/newsDashboard';
 import { ChevronDown } from 'lucide-react';
 import ReduxProvider from './ReduxProvider';
 
+const WeatherDashboard = dynamic(() => import('./components/weatherDashboards.js'), {
+  ssr: false, // Disable server-side rendering for this component
+});
+
+const CryptoDashboard = dynamic(() => import('./components/cryptoDashboard'), {
+  ssr: false,
+});
 
 export default function Dashboard() {
   const [showScrollHint, setShowScrollHint] = useState(true);
