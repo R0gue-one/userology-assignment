@@ -83,10 +83,17 @@ export default function CryptoDetails() {
   const isPriceDown = livePrice && previousPrice && parseFloat(livePrice) < parseFloat(previousPrice);
 
   const handleSearch = (e) => {
-    if (e.key === 'Enter') {
-      window.location.href = `/crypto/${query.toLowerCase()}`;
-    }
-  };
+    console.log("lala pressed!")
+    e.preventDefault()
+    router.push(`/crypto/${query.toLowerCase()}`);
+    // const route = `/weather/${query.toLowerCase().replace(/\s+/g, '-')}`
+    // router.push(route)
+  }
+  // const handleSearch = (e) => {
+  //   if (e.key === 'Enter') {
+      
+  //   }
+  // };
 
   // Chart configuration
   const chartOptions = {
@@ -164,7 +171,7 @@ export default function CryptoDetails() {
   }
 
   return (
-    <div className="p-4 md:p-6 space-y-6 text-white bg-gradient-to-br from-gray-950 to-gray-900 min-h-screen">
+    <div className="p-4 md:p-6 space-y-6 text-white bg-gradient-to-br from-violet-950 to-gray-900 min-h-screen">
     <div className="flex justify-center">
         <button onClick={onHomeClick} className="w-12 h-12 p-2 mx-2 my-2 bg-stone-100 text-stone-900 rounded-full hover:bg-stone-300 transition flex items-center justify-center">
             <House className="w-4 h-4" />
