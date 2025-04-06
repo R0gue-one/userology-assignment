@@ -4,6 +4,8 @@ Project Overview:
 
 CryptoWeather Nexus is a web application designed to deliver the latest news and updates in the cryptocurrency sector. Users can scroll through the interface to access various articles and information pertinent to the crypto industry.​
 
+Deployed link: [here](https://userology-assignment-alpha.vercel.app/)
+
 Features:
 - Live Price Feed using Binanace API
 - Live weather updates every 60s
