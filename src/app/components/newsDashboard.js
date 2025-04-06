@@ -76,7 +76,7 @@ export default function NewsDashboard() {
                   alt={article.title}
                   className="w-full h-48 object-cover"
                   onError={(e) => {
-                    e.target.src = `/api/placeholder/400/200?text=${encodeURIComponent(article.source_id)}`;
+                    e.target.src = `/globe.svg`;
                   }}
                 />
               ) : (

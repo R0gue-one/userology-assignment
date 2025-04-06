@@ -26,6 +26,35 @@ body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
+/* Add a subtle animation to the weather cards for a more engaging look */
+.bg-white, .bg-gray-800 {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-white:hover, .bg-gray-800:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Custom scroll bar for a more polished look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(66, 153, 225, 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(66, 153, 225, 0.8);
+}
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }

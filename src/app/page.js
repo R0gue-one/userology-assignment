@@ -44,6 +44,7 @@ export default function Dashboard() {
     newsRef.current?.scrollIntoView({ behavior: 'smooth' });
     setShowScrollHint(false);
   };
+  
 
   return (
     <main className="min-h-screen bg-gray-900 text-gray-100">
