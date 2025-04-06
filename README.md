@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CryptoWeather Nexus
 
-## Getting Started
+Project Overview:
 
-First, run the development server:
+CryptoWeather Nexus is a web application designed to deliver the latest news and updates in the cryptocurrency sector. Users can scroll through the interface to access various articles and information pertinent to the crypto industry.​
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Features:
+- Live Price Feed using Binanace API
+- Live weather updates every 60s
+- Crypto News Feed: A continuously updated stream of news articles related to cryptocurrencies.​
+- Ability to add new cities and crypto currencies to dashboard
+- Detailed weather and crypto report
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Technologies Used:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Developed using modern web technologies, likely including React.js and Next.js, given the deployment on Vercel.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pictures
+#### Home Page
+![home page](https://github.com/user-attachments/assets/739bdc9d-cca7-44ac-8d08-261cad32f410)
 
-## Learn More
+#### Weather details
+![image](https://github.com/user-attachments/assets/3f621043-071b-49fc-add4-99b6a2d08d6e)
 
-To learn more about Next.js, take a look at the following resources:
+#### Crypto Details
+![image](https://github.com/user-attachments/assets/1c981472-e9e7-4789-b35c-0d5af02624cd)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Demo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
