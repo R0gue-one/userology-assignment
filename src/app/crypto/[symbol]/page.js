@@ -17,7 +17,6 @@ export default function CryptoDetails() {
   const [previousPrice, setPreviousPrice] = useState(null);
   const [showFullTable, setShowFullTable] = useState(false);
   const [query, setQuery] = useState('');
-  Router
   const binanceSymbols = {
     bitcoin: 'btcusdt',
     ethereum: 'ethusdt',
